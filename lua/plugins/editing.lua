@@ -1,16 +1,10 @@
--- =============================================================================
--- Editing: File Explorer, Git Signs, Autopairs, Compile Runner
--- =============================================================================
--- These plugins enhance the editing experience without getting in your way.
+-- Editing: indentation detection, git signs, file explorer, autopairs, compile.
 
 return {
-	-- ---- Auto-detect Indentation ----
-	-- Detects whether a file uses tabs or spaces and adjusts shiftwidth/tabstop
-	-- accordingly. Overrides the defaults set in options.lua per-buffer.
+	-- Auto-detect indentation style per buffer.
 	{ 'NMAC427/guess-indent.nvim' },
 
-	-- ---- Git Signs ----
-	-- Shows added/modified/deleted lines in the sign column.
+	-- Git signs in the sign column.
 	{
 		'lewis6991/gitsigns.nvim',
 		opts = {
@@ -18,31 +12,27 @@ return {
 				add = { text = '+' },
 				change = { text = '~' },
 				delete = { text = '_' },
-				topdelete = { text = '‾' },
+				topdelete = { text = '^' },
 				changedelete = { text = '~' },
 			},
 		},
 	},
 
-	-- ---- File Explorer (dired-style) ----
-	-- oil.nvim replaces netrw with an editable directory buffer.
-	-- Open with <leader>e. Edit file paths directly to rename/move.
-	-- Press <leader>e again or <CR> on a file to close and open it.
+	-- File explorer as editable buffer (dired-style).
 	{
 		'stevearc/oil.nvim',
 		lazy = false,
 		opts = {
 			default_file_explorer = true,
 			keymaps = {
-				['<leader>e'] = 'actions.close', -- toggle: same key opens and closes
-				['<C-h>'] = false, -- let global <C-h> handle window nav
+				['<leader>e'] = 'actions.close',
+				['<C-h>'] = false,
 				['<C-l>'] = false,
 			},
 		},
 	},
 
-	-- ---- Auto-pairs ----
-	-- Automatically closes brackets, quotes, etc. Lightweight (part of mini.nvim).
+	-- Auto-close brackets and quotes.
 	{
 		'echasnovski/mini.pairs',
 		event = 'VeryLazy',
@@ -51,9 +41,7 @@ return {
 		},
 	},
 
-	-- ---- Compile Runner (Emacs-like: M-x compile) ----
-	-- Run build commands and see output in a dedicated buffer.
-	-- <leader>cc → compile, <leader>cr → recompile, <leader>cq → close output.
+	-- Compile runner. <leader>cc compile, <leader>cr recompile, <leader>cq close.
 	{
 		'ej-shafran/compile-mode.nvim',
 		version = '^5.0.0',

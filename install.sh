@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
-# =============================================================================
-# Neovim Config Bootstrap — Debian / Ubuntu
-# =============================================================================
-# Installs everything needed for this Neovim config on a fresh system.
+# Neovim config bootstrap for Debian / Ubuntu.
 #
 # Usage:
 #   chmod +x install.sh && ./install.sh
-# =============================================================================
 
 set -euo pipefail
 
@@ -21,23 +17,22 @@ ok()    { echo -e "${GREEN}[OK]${NC}    $*"; }
 warn()  { echo -e "${YELLOW}[WARN]${NC}  $*"; }
 err()   { echo -e "${RED}[ERROR]${NC} $*"; }
 
-# ---- Ensure we're on Debian/Ubuntu ----
 if ! command -v apt-get &>/dev/null; then
-    err "This script only supports Debian / Ubuntu (apt-get not found)."
+    err "apt-get not found. This script supports Debian / Ubuntu."
     exit 1
 fi
 
 echo ""
 echo "============================================"
-echo "  Neovim Config Bootstrap — Debian/Ubuntu"
+echo "  Neovim Config Bootstrap"
 echo "============================================"
 echo ""
 
-# ---- 1. System packages ----
+# System packages.
 info "Updating package lists..."
 sudo apt-get update -qq
 
-info "Installing system dependencies..."
+info "Installing dependencies..."
 sudo apt-get install -y -qq \
     git \
     make \
@@ -51,16 +46,16 @@ sudo apt-get install -y -qq \
     npm \
     golang-go
 
-# fd is named fdfind on Debian — create an alias if needed
+# fd is named fdfind on Debian.
 if ! command -v fd &>/dev/null && command -v fdfind &>/dev/null; then
     mkdir -p ~/.local/bin
     ln -sf "$(command -v fdfind)" ~/.local/bin/fd
-    ok "Created ~/.local/bin/fd → fdfind symlink"
+    ok "Created ~/.local/bin/fd symlink"
 fi
 
 ok "System packages installed."
 
-# ---- 2. Neovim (from official repo for latest version) ----
+# Neovim from PPA.
 if command -v nvim &>/dev/null; then
     ok "Neovim already installed: $(nvim --version | head -1)"
 else
@@ -71,7 +66,7 @@ else
     ok "Neovim installed: $(nvim --version | head -1)"
 fi
 
-# ---- 3. Optional: lazygit (magit-like git interface) ----
+# lazygit.
 if command -v lazygit &>/dev/null; then
     ok "lazygit already installed."
 else
@@ -84,28 +79,28 @@ else
     ok "lazygit installed."
 fi
 
-# ---- 4. Bootstrap Neovim plugins ----
-info "Installing Neovim plugins (this may take a minute)..."
-nvim --headless "+Lazy! sync" +qa 2>&1 || warn "Plugin install had warnings (this is often OK)."
+# Neovim plugins.
+info "Installing plugins..."
+nvim --headless "+Lazy! sync" +qa 2>&1 || warn "Plugin install warnings (often OK)."
 ok "Plugins installed."
 
-# ---- 5. Health check ----
+# Health check.
 info "Running :checkhealth..."
 nvim --headless "+checkhealth" +qa 2>&1 | head -50
 
 echo ""
 echo "============================================"
-echo "  Done. Open Neovim and start coding."
+echo "  Done."
 echo "============================================"
 echo ""
-echo "Quick reference:"
-echo "  <Space>ff  →  Find files"
-echo "  <Space>fg  →  Live grep"
-echo "  <Space>fb  →  Switch buffers"
-echo "  <Space>e   →  File explorer (oil.nvim)"
-echo "  <Space>tt  →  Terminal"
-echo "  <Space>cc  →  Compile"
-echo "  <Space>xx  →  Diagnostics"
+echo "Keys:"
+echo "  <Space>ff  Find files"
+echo "  <Space>fg  Live grep"
+echo "  <Space>fb  Switch buffers"
+echo "  <Space>e   File explorer"
+echo "  <Space>tt  Terminal"
+echo "  <Space>cc  Compile"
+echo "  <Space>xx  Diagnostics"
 echo ""
-echo "Full docs: ~/.config/nvim/README.md"
+echo "Docs: ~/.config/nvim/README.md"
 echo ""

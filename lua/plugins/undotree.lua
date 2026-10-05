@@ -1,8 +1,4 @@
--- =============================================================================
--- Undo Tree Visualization (Emacs-like: undo-tree)
--- =============================================================================
--- Visualize and navigate the undo history as a tree.
--- Toggle with <leader>u.
+-- Undo tree visualization. <leader>u toggles the undo history buffer.
 
 return {
 	{

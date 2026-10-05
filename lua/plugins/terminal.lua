@@ -1,9 +1,8 @@
--- =============================================================================
--- Terminal Integration (Emacs-like: eshell / ansi-term)
--- =============================================================================
--- toggleterm.nvim gives you persistent, buffer-like terminal windows.
--- Float a terminal with <leader>tt, open a horizontal split with <leader>th,
--- or send commands to a running terminal from any buffer.
+-- Terminal buffers via toggleterm.nvim.
+--
+--   <leader>tt  floating terminal
+--   <leader>tT  horizontal split terminal
+--   <leader>tv  vertical split terminal
 
 return {
 	{
@@ -23,7 +22,7 @@ return {
 					return vim.o.columns * 0.4
 				end
 			end,
-			open_mapping = false, -- we define our own keymaps above
+			open_mapping = false,
 			hide_numbers = true,
 			shade_filetypes = {},
 			shade_terminals = true,

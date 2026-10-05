@@ -1,10 +1,10 @@
--- =============================================================================
--- Session Persistence (Emacs-like: desktop.el)
--- =============================================================================
--- auto-session.nvim automatically saves and restores your session
--- (open buffers, splits, tabs, cwd) when you open/close Neovim.
--- Sessions are stored per-git-branch, so switching branches gives you
--- the right set of files.
+-- Session persistence via auto-session. Saves and restores buffers, splits,
+-- and working directory per git branch.
+--
+--   <leader>ss  save session
+--   <leader>sl  restore session
+--   <leader>sd  delete session
+--   <leader>s.  search sessions
 
 return {
 	{
@@ -22,7 +22,6 @@ return {
 			{ '<leader>sd', '<cmd>SessionDelete<CR>', desc = 'Delete session' },
 			{ '<leader>s.', '<cmd>Telescope session-lens<CR>', desc = 'Search sessions' },
 		},
-		-- Session lens for telescope (browse saved sessions)
 		dependencies = {
 			{
 				'rmagatti/session-lens',

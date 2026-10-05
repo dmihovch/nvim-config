@@ -1,16 +1,10 @@
--- =============================================================================
--- Plugin Index
--- =============================================================================
--- Each `import` points to a file in lua/plugins/ that returns a list of
--- plugin specs. Add new plugin files here to register them.
+-- Plugin index. Each import loads a file from lua/plugins/.
 --
--- To add a new plugin:
---   1. Create lua/plugins/my-plugin.lua
---   2. Add `{ import = 'plugins.my-plugin' }` below
--- =============================================================================
+-- To add a plugin:
+--   1. Create lua/plugins/<name>.lua
+--   2. Add { import = 'plugins.<name>' } below
 
 return {
-	-- Core
 	{ import = 'plugins.colorscheme' },
 	{ import = 'plugins.editing' },
 	{ import = 'plugins.telescope' },
@@ -18,8 +12,6 @@ return {
 	{ import = 'plugins.lsp' },
 	{ import = 'plugins.completion' },
 	{ import = 'plugins.ui' },
-
-	-- Emacs-like / IDE enhancements
 	{ import = 'plugins.terminal' },
 	{ import = 'plugins.trouble' },
 	{ import = 'plugins.search-replace' },

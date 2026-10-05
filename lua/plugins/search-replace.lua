@@ -1,9 +1,5 @@
--- =============================================================================
--- Interactive Find & Replace (Emacs-like: wgrep / project-query-replace)
--- =============================================================================
--- grug-far.nvim gives you an interactive search-and-replace buffer.
--- Search across the project, preview results, edit replacements inline,
--- and apply them all at once. Open with <leader>sr.
+-- Interactive find and replace via grug-far.nvim.
+-- <leader>sr opens a search-and-replace buffer.
 
 return {
 	{
@@ -13,7 +9,6 @@ return {
 			{ '<leader>sr', '<cmd>GrugFar<CR>', desc = 'Search and replace' },
 		},
 		opts = {
-			-- Use ripgrep for searching
 			engines = {
 				regex = 'ripgrep',
 			},

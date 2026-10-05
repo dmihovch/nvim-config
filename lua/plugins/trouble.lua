@@ -1,9 +1,9 @@
--- =============================================================================
--- Diagnostics Buffer (Emacs-like: compilation-mode error list)
--- =============================================================================
--- trouble.nvim gives you a structured, interactive diagnostics list in a buffer.
--- Toggle with <leader>xx, see workspace diagnostics with <leader>xw,
--- document diagnostics with <leader>xd, or the quickfix list with <leader>xq.
+-- Diagnostics list in a buffer via trouble.nvim.
+--
+--   <leader>xx  toggle diagnostics
+--   <leader>xw  document diagnostics
+--   <leader>xq  quickfix list
+--   <leader>xl  location list
 
 return {
 	{

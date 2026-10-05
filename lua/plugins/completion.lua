@@ -1,12 +1,4 @@
--- =============================================================================
--- Autocompletion: blink.cmp + LuaSnip
--- =============================================================================
--- blink.cmp is a modern, fast completion engine. It pulls from:
---   - LSP servers (code completions)
---   - File paths
---   - LuaSnip snippets
---   - lazydev (Lua API completions for Neovim config)
--- =============================================================================
+-- Autocompletion via blink.cmp. Sources: LSP, path, snippets, lazydev.
 
 return {
 	{
@@ -31,16 +23,14 @@ return {
 		opts = {
 			keymap = {
 				preset = 'default',
-				-- Tab accepts the selected completion (IDE-like).
-				-- Ctrl+n / Ctrl+p still navigate the list.
+				-- Tab accepts the selected completion. Ctrl+n/p navigate.
 				-- When no completion menu is open, Tab falls through to
-				-- its normal behaviour (indent, snippet next, etc.).
+				-- indent or snippet-next.
 				['<Tab>'] = { 'accept', 'fallback' },
 				['<C-y>'] = {},
 			},
 
 			completion = {
-				-- Don't auto-show documentation (press K or <C-k> to see it).
 				documentation = { auto_show = false, auto_show_delay_ms = 500 },
 			},
 

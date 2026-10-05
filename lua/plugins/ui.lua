@@ -1,28 +1,23 @@
--- =============================================================================
--- UI: Keybinding Hints (which-key) and Statusline (lualine)
--- =============================================================================
--- No Nerd Font icons — everything uses plain text labels that work
--- in any terminal.
+-- UI: which-key (keybinding hints) and lualine (statusline).
+-- No Nerd Font required. All labels are plain ASCII.
 
 return {
-	-- ---- which-key: Popup showing available keybindings ----
 	{
 		'folke/which-key.nvim',
 		event = 'VimEnter',
 		opts = {
 			delay = 0,
 			icons = {
-				-- Text labels instead of Nerd Font glyphs.
 				mappings = false,
 				keys = {
 					Up = '<Up> ',
 					Down = '<Down> ',
 					Left = '<Left> ',
 					Right = '<Right> ',
-					C = '<C-…> ',
-					M = '<M-…> ',
-					D = '<D-…> ',
-					S = '<S-…> ',
+					C = '<C-> ',
+					M = '<M-> ',
+					D = '<D-> ',
+					S = '<S-> ',
 					CR = '<CR> ',
 					Esc = '<Esc> ',
 					ScrollWheelDown = '<ScrollWheelDown> ',
@@ -45,23 +40,20 @@ return {
 					F12 = '<F12>',
 				},
 			},
-			-- Document keybinding groups so they show up in the which-key popup.
 			spec = {
-				{ '<leader>b', group = '[B]uffer' },
-				{ '<leader>f', group = '[F]ind / [F]iles' },
-				{ '<leader>g', group = '[G]it' },
-				{ '<leader>s', group = '[S]earch / [S]ession' },
-				{ '<leader>t', group = '[T]oggle / [T]erminal' },
-				{ '<leader>w', group = '[W]indow' },
+				{ '<leader>b', group = 'Buffer' },
+				{ '<leader>f', group = 'Find / Files' },
+				{ '<leader>g', group = 'Git' },
+				{ '<leader>s', group = 'Search / Session' },
+				{ '<leader>t', group = 'Toggle / Terminal' },
+				{ '<leader>w', group = 'Window' },
 				{ '<leader>x', group = 'Diagnostics / Trouble' },
-				{ '<leader>c', group = '[C]d / [C]ompile' },
-				{ 'gr', group = 'LSP: [G]oto / [R]eferences' },
+				{ '<leader>c', group = 'Cd / Compile' },
+				{ 'gr', group = 'LSP: Go to / References' },
 			},
 		},
 	},
 
-	-- ---- lualine: Statusline ----
-	-- Clean, minimal statusline with no separators.
 	{
 		'nvim-lualine/lualine.nvim',
 		config = function()
