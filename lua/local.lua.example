@@ -1,0 +1,14 @@
+-- =============================================================================
+-- Machine-Specific Overrides
+-- =============================================================================
+-- Copy this file to `local.lua` (gitignored) and add any settings that should
+-- NOT be shared across machines.
+--
+-- Examples:
+--   vim.o.guifont = "FiraCode Nerd Font:h14"   -- GUI font
+--   vim.g.python3_host_prog = "/usr/bin/python3"
+--   vim.g.node_host_prog = "/usr/local/bin/neovim-node-host"
+-- =============================================================================
+
+-- Uncomment and edit:
+-- vim.o.guifont = "monospace:h12"

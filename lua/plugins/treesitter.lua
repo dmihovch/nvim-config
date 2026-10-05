@@ -1,4 +1,13 @@
--- Treesitter: parser-based highlighting and indentation.
+-- =============================================================================
+-- Treesitter: Parser-Based Syntax Highlighting & Indentation
+-- =============================================================================
+-- Treesitter provides more accurate highlighting and indentation than
+-- regex-based syntax files. Parsers are installed automatically.
+--
+-- To add a language:
+--   1. Add it to the `ensure_installed` list below
+--   2. Restart Neovim — it will be installed automatically
+-- =============================================================================
 
 return {
 	{
@@ -31,6 +40,7 @@ return {
 			auto_install = true,
 			highlight = {
 				enable = true,
+				-- Use regex highlighting for Ruby (treesitter Ruby parser can be slow).
 				additional_vim_regex_highlighting = { 'ruby' },
 			},
 			indent = { enable = true, disable = { 'ruby' } },

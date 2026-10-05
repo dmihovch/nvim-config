@@ -1,0 +1,18 @@
+# Plugin manager
+lazy-lock.json
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Swap/undo/backup files
+*.swp
+*.swo
+*~
+undo/
+
+# Spell files
+spell/
+
+# Local-only overrides (create this file for machine-specific settings)
+lua/local.lua

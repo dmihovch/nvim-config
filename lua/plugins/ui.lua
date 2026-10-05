@@ -1,6 +1,11 @@
--- UI: keybind hints (which-key) and statusline (lualine). No Nerd Font icons.
+-- =============================================================================
+-- UI: Keybinding Hints (which-key) and Statusline (lualine)
+-- =============================================================================
+-- No Nerd Font icons — everything uses plain text labels that work
+-- in any terminal.
 
 return {
+	-- ---- which-key: Popup showing available keybindings ----
 	{
 		'folke/which-key.nvim',
 		event = 'VimEnter',
@@ -40,24 +45,32 @@ return {
 					F12 = '<F12>',
 				},
 			},
-			-- Document existing key chains.
+			-- Document keybinding groups so they show up in the which-key popup.
 			spec = {
-				{ '<leader>s', group = '[S]earch' },
-				{ '<leader>t', group = '[T]oggle' },
-				{ '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+				{ '<leader>b', group = '[B]uffer' },
+				{ '<leader>f', group = '[F]ind / [F]iles' },
+				{ '<leader>g', group = '[G]it' },
+				{ '<leader>s', group = '[S]earch / [S]ession' },
+				{ '<leader>t', group = '[T]oggle / [T]erminal' },
+				{ '<leader>w', group = '[W]indow' },
+				{ '<leader>x', group = 'Diagnostics / Trouble' },
+				{ '<leader>c', group = '[C]d / [C]ompile' },
+				{ 'gr', group = 'LSP: [G]oto / [R]eferences' },
 			},
 		},
 	},
 
+	-- ---- lualine: Statusline ----
+	-- Clean, minimal statusline with no separators.
 	{
 		'nvim-lualine/lualine.nvim',
 		config = function()
-			require('lualine').setup {
+			require('lualine').setup({
 				options = {
 					section_separators = '',
 					component_separators = '',
 				},
-			}
+			})
 		end,
 	},
 }
