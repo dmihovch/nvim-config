@@ -45,9 +45,10 @@ return {
 				{ '<leader>f', group = 'Find / Files' },
 				{ '<leader>g', group = 'Git' },
 				{ '<leader>s', group = 'Search / Session' },
-				{ '<leader>t', group = 'Toggle / Terminal' },
+				{ '<leader>t', group = 'Toggle / Terminal', icon = '' },
 				{ '<leader>w', group = 'Window' },
 				{ '<leader>x', group = 'Diagnostics / Trouble' },
+
 				{ '<leader>c', group = 'Cd / Compile' },
 				{ 'gr', group = 'LSP: Go to / References' },
 			},

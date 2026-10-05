@@ -55,6 +55,25 @@ map('n', '<C-Down>', '<cmd>resize -2<CR>', { desc = 'Decrease window height' })
 map('n', '<C-Left>', '<cmd>vertical resize -2<CR>', { desc = 'Decrease window width' })
 map('n', '<C-Right>', '<cmd>vertical resize +2<CR>', { desc = 'Increase window width' })
 
+-- Quick shell command. Prompts for a command, runs it, shows output in a split.
+map('n', '<leader>1', function()
+	vim.ui.input({ prompt = 'Shell command: ' }, function(cmd)
+		if not cmd or cmd == '' then
+			return
+		end
+		local output = vim.fn.systemlist(cmd)
+		local exit_code = vim.v.shell_error
+		vim.cmd('new')
+		local buf = vim.api.nvim_get_current_buf()
+		vim.bo[buf].buftype = 'nofile'
+		vim.bo[buf].bufhidden = 'wipe'
+		vim.api.nvim_buf_set_lines(buf, 0, -1, false, output)
+		vim.api.nvim_buf_set_lines(buf, -1, -1, false, { '', 'Exit code: ' .. exit_code })
+		vim.bo[buf].modifiable = false
+		vim.cmd('file Shell: ' .. cmd)
+	end)
+end, { desc = 'Run shell command' })
+
 -- Working directory.
 map('n', '<leader>cd', '<cmd>cd %:p:h<CR><cmd>pwd<CR>', { desc = 'Cd to current file dir' })
 map('n', '<leader>cD', function()

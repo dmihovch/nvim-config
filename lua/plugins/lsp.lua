@@ -115,6 +115,35 @@ return {
 				},
 			})
 
+			-- Toggle diagnostics on/off. State persists to disk.
+			local state_file = vim.fn.stdpath('state') .. '/diagnostics_disabled'
+			local function save_diag_state(disabled)
+				local f = io.open(state_file, 'w')
+				if f then
+					f:write(disabled and '1' or '0')
+					f:close()
+				end
+			end
+			local function load_diag_state()
+				local f = io.open(state_file, 'r')
+				if f then
+					local val = f:read('*a')
+					f:close()
+					return val == '1'
+				end
+				return false
+			end
+			if load_diag_state() then
+				vim.diagnostic.enable(false)
+			end
+			vim.keymap.set('n', '<leader>td', function()
+				local enabled = not vim.diagnostic.is_enabled()
+				vim.diagnostic.enable(enabled)
+				save_diag_state(not enabled)
+				local msg = enabled and 'Diagnostics on' or 'Diagnostics off'
+				vim.notify(msg, vim.log.levels.INFO, { title = 'LSP' })
+			end, { desc = 'Toggle diagnostics' })
+
 			local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 			-- Server definitions. Add or remove entries here.
