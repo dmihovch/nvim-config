@@ -1,4 +1,4 @@
--- LSP setup. Mason installs servers, lspconfig configures them.
+-- LSP setup. Mason installs servers, vim.lsp.config configures them.
 --
 -- To add a server:
 --   1. Add it to the `servers` table.
@@ -7,6 +7,10 @@
 -- To remove a server:
 --   1. Delete its entry from `servers`.
 --   2. Run :MasonUninstall <name> to remove the binary.
+--
+-- Note: clangd is configured separately (see below) so it uses the system
+-- binary. Mason's clangd package ships x86_64-only binaries, so on ARM
+-- systems it must come from your distro instead.
 
 return {
 	-- Lua LSP for Neovim config and plugin development.
@@ -146,9 +150,15 @@ return {
 
 			local capabilities = require('blink.cmp').get_lsp_capabilities()
 
+			-- Apply blink.cmp capabilities to every server.
+			vim.lsp.config('*', {
+				capabilities = capabilities,
+			})
+
 			-- Server definitions. Add or remove entries here.
+			-- clangd is intentionally absent: it's set up below using the
+			-- system binary so it works on ARM (Mason's clangd is x86_64-only).
 			local servers = {
-				clangd = {},
 				gopls = {},
 				pyright = {},
 				ts_ls = {},
@@ -164,6 +174,24 @@ return {
 				},
 			}
 
+			-- Register and enable each server. vim.lsp.config() merges the
+			-- per-server overrides with the defaults nvim-lspconfig ships in
+			-- its lsp/ directory.
+			for name, config in pairs(servers) do
+				vim.lsp.config(name, config)
+				vim.lsp.enable(name)
+			end
+
+			-- clangd uses the system binary rather than Mason's, because Mason's
+			-- clangd package ships x86_64-only binaries (no ARM builds). The
+			-- `clangd` command resolves to the system binary on PATH. If you
+			-- previously installed clangd via Mason, run :MasonUninstall clangd
+			-- so it doesn't shadow the system binary.
+			vim.lsp.config('clangd', {
+				cmd = { 'clangd' },
+			})
+			vim.lsp.enable('clangd')
+
 			-- Tools Mason installs automatically.
 			local ensure_installed = vim.tbl_keys(servers)
 			vim.list_extend(ensure_installed, {
@@ -172,18 +200,12 @@ return {
 			})
 			require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
-			-- Wire Mason to lspconfig.
+			-- Mason maps lspconfig names to package names for
+			-- mason-tool-installer. automatic_enable is disabled because
+			-- servers are enabled manually above.
 			require('mason-lspconfig').setup({
 				ensure_installed = {},
-				automatic_installation = false,
-				handlers = {
-					function(server_name)
-						local server = servers[server_name] or {}
-						server.capabilities =
-							vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-						require('lspconfig')[server_name].setup(server)
-					end,
-				},
+				automatic_enable = false,
 			})
 		end,
 	},
