@@ -12,6 +12,9 @@ return {
 			engines = {
 				regex = 'ripgrep',
 			},
+			icons = {
+				enabled = false,
+			},
 		},
 	},
 }

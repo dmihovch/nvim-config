@@ -18,6 +18,17 @@ return {
 		opts = {
 			focus = true,
 			win = { position = 'bottom', size = 0.3 },
+			icons = {
+				indent = {
+					fold_open = '+',
+					fold_closed = '-',
+				},
+				folder_closed = '+',
+				folder_open = '-',
+			},
+			config = function(opts)
+				opts.icons.kinds = {}
+			end,
 		},
 	},
 }

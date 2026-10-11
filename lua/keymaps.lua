@@ -15,6 +15,11 @@ local map = vim.keymap.set
 -- Clear search highlight.
 map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlight' })
 
+-- Command-line entry off the pinky. `:` is Shift + `;`, which strains the right
+-- pinky. `,` (right middle finger) opens the command line instead. `:` still
+-- works, so old muscle memory isn't broken.
+map({ 'n', 'v' }, ',', ':', { desc = 'Command line' })
+
 -- Diagnostic quickfix list.
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Diagnostic quickfix list' })
 

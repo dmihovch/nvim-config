@@ -44,3 +44,24 @@ autocmd('VimResized', {
 	group = augroup('resize-splits', { clear = true }),
 	command = 'wincmd =',
 })
+
+-- Make `gf` find C/C++ headers anywhere in the project. Vim's default `path`
+-- only searches the current directory and the file's own directory, so an
+-- `#include` whose header lives in include/ or src/ fails with E447. Search
+-- from the buffer up to the project root instead.
+autocmd('FileType', {
+	desc = 'Resolve C/C++ includes for gf',
+	group = augroup('c-include-path', { clear = true }),
+	pattern = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+	callback = function()
+		local dir = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':p:h')
+		local root = vim.fs.root(dir, { '.git', 'compile_commands.json', 'CMakeLists.txt', 'Makefile' })
+		local path = { '.', dir }
+		if root then
+			path[#path + 1] = root
+			path[#path + 1] = root .. '/**'
+		end
+		vim.opt_local.path = path
+		vim.opt_local.suffixesadd:append({ '.h', '.hpp', '.hh', '.hxx', '.inl' })
+	end,
+})

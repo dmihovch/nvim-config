@@ -112,4 +112,6 @@ Leader key: `<Space>`
 |---|---|
 | `<leader>u` | Undo tree |
 | `<leader>sh` | Help for word under cursor |
+| `,` | Open command line (`:` still works) |
+| `gf` | Go to file under cursor (searches project) |
 | `<Esc>` | Clear search highlight |

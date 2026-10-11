@@ -41,7 +41,7 @@ o.inccommand = 'split'
 
 -- UI.
 o.signcolumn = 'yes'
-o.cursorline = true
+o.cursorline = false
 o.scrolloff = 10
 o.list = true
 opt.listchars = { tab = '> ', trail = '.', nbsp = '+' }
