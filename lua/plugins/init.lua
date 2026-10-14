@@ -8,6 +8,7 @@ return {
 	{ import = 'plugins.colorscheme' },
 	{ import = 'plugins.editing' },
 	{ import = 'plugins.telescope' },
+	{ import = 'plugins.file-browser' },
 	{ import = 'plugins.treesitter' },
 	{ import = 'plugins.lsp' },
 	{ import = 'plugins.completion' },

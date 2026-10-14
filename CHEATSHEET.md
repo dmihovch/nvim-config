@@ -7,6 +7,9 @@ Leader key: `<Space>`
 | Key | Action |
 |---|---|
 | `<leader>ff` | Find files |
+| `<leader>fa` | Find files (home) |
+| `<leader>fA` | Find files (root) |
+| `<leader>fd` | Browse directory |
 | `<leader>fp` | Find files (git) |
 | `<leader>f.` | Recent files |
 | `<leader>e` | File explorer |

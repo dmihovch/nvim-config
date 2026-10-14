@@ -38,6 +38,9 @@ Leader key: `<Space>`
 | Key | Action |
 |---|---|
 | `<leader>ff` | Find files |
+| `<leader>fa` | Find files (home) |
+| `<leader>fA` | Find files (root) |
+| `<leader>fd` | Browse directory |
 | `<leader>fp` | Find files (git only) |
 | `<leader>f.` | Recent files |
 | `<leader>fb` | Switch buffer |
@@ -157,6 +160,7 @@ Leader key: `<Space>`
       search-replace.lua    grug-far
       session.lua           auto-session
       telescope.lua         Fuzzy finder
+      file-browser.lua      Filesystem-wide file browser
       terminal.lua          toggleterm
       treesitter.lua        Syntax highlighting
       trouble.lua           Diagnostics buffer
@@ -171,6 +175,7 @@ Leader key: `<Space>`
 | onedarkpro.nvim | Colorscheme |
 | oil.nvim | File explorer as editable buffer |
 | telescope.nvim | Fuzzy finder |
+| telescope-file-browser.nvim | Filesystem-wide file browser |
 | blink.cmp | Autocompletion |
 | LuaSnip | Snippets |
 | nvim-lspconfig + Mason | LSP server management |
