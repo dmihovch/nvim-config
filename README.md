@@ -37,10 +37,10 @@ Leader key: `<Space>`
 
 | Key | Action |
 |---|---|
-| `<leader>ff` | Find files |
+| `<leader>ff` | Find files in the current directory (Telescope) |
+| `<leader>fd` | Open a file by path in the command line |
 | `<leader>fa` | Find files (home) |
 | `<leader>fA` | Find files (root) |
-| `<leader>fd` | Browse directory |
 | `<leader>fp` | Find files (git only) |
 | `<leader>f.` | Recent files |
 | `<leader>fb` | Switch buffer |
@@ -50,6 +50,8 @@ Leader key: `<Space>`
 | `<leader>bp` | Previous buffer |
 | `<leader>bq` | Close all buffers but this |
 | `<leader>e` | File explorer (oil.nvim) |
+
+`<leader>fd` opens Neovim's one-line `:edit` prompt. Type `/` for the filesystem root, `~/` for home, or a relative path. The first `Tab` displays the matches and selects the first one. Further `Tab` presses cycle through matches. The wildmenu displays matches inline without opening a popup or split. Press `Enter` to open the selected path. Press `Esc` to cancel.
 
 ### Search
 
@@ -160,7 +162,6 @@ Leader key: `<Space>`
       search-replace.lua    grug-far
       session.lua           auto-session
       telescope.lua         Fuzzy finder
-      file-browser.lua      Filesystem-wide file browser
       terminal.lua          toggleterm
       treesitter.lua        Syntax highlighting
       trouble.lua           Diagnostics buffer
@@ -175,7 +176,6 @@ Leader key: `<Space>`
 | onedarkpro.nvim | Colorscheme |
 | oil.nvim | File explorer as editable buffer |
 | telescope.nvim | Fuzzy finder |
-| telescope-file-browser.nvim | Filesystem-wide file browser |
 | blink.cmp | Autocompletion |
 | LuaSnip | Snippets |
 | nvim-lspconfig + Mason | LSP server management |

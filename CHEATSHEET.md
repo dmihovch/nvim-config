@@ -6,13 +6,15 @@ Leader key: `<Space>`
 
 | Key | Action |
 |---|---|
-| `<leader>ff` | Find files |
+| `<leader>ff` | Find files in the current directory (Telescope) |
+| `<leader>fd` | Open a file by path in the command line |
 | `<leader>fa` | Find files (home) |
 | `<leader>fA` | Find files (root) |
-| `<leader>fd` | Browse directory |
 | `<leader>fp` | Find files (git) |
 | `<leader>f.` | Recent files |
 | `<leader>e` | File explorer |
+
+`<leader>fd` opens Neovim's one-line `:edit` prompt. Type `/` for the filesystem root, `~/` for home, or a relative path. The first `Tab` displays the matches and selects the first one. Further `Tab` presses cycle through matches. Matches appear in the command-line wildmenu without a popup window. Press `Enter` to open the selected path. Press `Esc` to cancel.
 
 ## Search
 
