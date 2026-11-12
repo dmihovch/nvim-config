@@ -43,7 +43,7 @@ o.inccommand = 'split'
 o.signcolumn = 'yes'
 o.cursorline = false
 o.scrolloff = 10
-o.list = true
+o.list = false
 opt.listchars = { tab = '> ', trail = '.', nbsp = '+' }
 opt.termguicolors = true
 o.splitright = true
@@ -63,6 +63,8 @@ o.foldenable = false
 o.foldlevel = 99
 
 -- Command-line completion. Tab on :e, :cd, etc. autocompletes paths.
+o.cmdheight = 1
 o.wildmenu = true
-opt.wildmode = 'longest:full,full'
+opt.wildmode = 'list:full'
+opt.wildoptions = 'tagfile'
 opt.wildignore = '*.o,*.obj,*.pyc,*.class,*.DS_Store'

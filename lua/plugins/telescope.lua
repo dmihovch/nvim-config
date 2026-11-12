@@ -1,6 +1,7 @@
 -- Fuzzy finder.
 --
---   <leader>ff  find files
+--   <leader>ff  fuzzy find files
+--   <leader>fd  open a file by path in the command line
 --   <leader>fa  find files (home)
 --   <leader>fA  find files (root)
 --   <leader>f.  recent files
@@ -50,6 +51,7 @@ return {
 			local builtin = require('telescope.builtin')
 
 			vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find files' })
+			vim.keymap.set('n', '<leader>fd', ':edit ', { desc = 'Open file by path' })
 			vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = 'Recent files' })
 			vim.keymap.set('n', '<leader>fp', builtin.git_files, { desc = 'Find files (git)' })
 			vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Live grep' })

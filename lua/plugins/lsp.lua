@@ -159,6 +159,7 @@ return {
 			-- clangd is intentionally absent: it's set up below using the
 			-- system binary so it works on ARM (Mason's clangd is x86_64-only).
 			local servers = {
+				ols = {},
 				gopls = {},
 				pyright = {},
 				ts_ls = {},
